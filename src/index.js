@@ -1,13 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import {//Esta linea haat la 7 no estaba
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { CreacionDeFormulario } from './CreacionDeFormulario';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App/>,
+  }, 
+  {
+    path: "/CR",
+    element: <CreacionDeFormulario/>,
+  }, 
+
+]);//Se cambio e. componente que se quiere llamar
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+root.render(//Linea 21 no estaba
   <React.StrictMode>
-    <App />
+   <RouterProvider router={router} />
   </React.StrictMode>
 );
 
