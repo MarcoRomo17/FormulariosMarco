@@ -8,6 +8,7 @@ import {//Esta linea haat la 7 no estaba
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { CreacionDeFormulario } from './CreacionDeFormulario';
+import { Login } from './Login';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "/CR",
     element: <CreacionDeFormulario/>,
+  }, 
+  {
+    path: "/L",
+    element: <Login/>,
   }, 
 
 ]);//Se cambio e. componente que se quiere llamar
