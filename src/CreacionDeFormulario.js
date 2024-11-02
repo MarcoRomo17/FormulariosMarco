@@ -32,6 +32,7 @@ const [objetoInicial, setobjetoInicial] = useState(
     const [DescripcionP, setDescripcionP] = useState('');
     const [preguntaTitle, setpreguntaTitle] = useState('');
     const [opcionDePregunta, setopcionDePregunta] = useState('');
+    const [TextoDeOpcion, setTextoDeOpcion] = useState('');
 
     
 
@@ -57,14 +58,7 @@ const [objetoInicial, setobjetoInicial] = useState(
 
 
 
-    //Se supone agarra lo de el tipo de pregunta y lo guarda en una variable
-    const recogerTipoPregunta=(e)=>{
-        e.preventDefault();
-        const OPtemporal=e.target.value
-        console.log(OPtemporal)
-        setopcionDePregunta(OPtemporal)
-
-    }
+  
 
     const addQuestion=()=>{
         let variableDatosAnteriores=objetoInicial
@@ -83,21 +77,83 @@ const [objetoInicial, setobjetoInicial] = useState(
         setobjetoInicial({...datosNuevos})
         
     }
-    //Esto agarra lo dle input y lo asigna como el titulo(texto) de la pregunta en cuestion. Lo asigna a una variable, de momento.
-    const recogerTextoPregunta=(e)=>{
 
+
+            //Esto agarra lo dle input y lo asigna como el titulo(texto) de la pregunta en cuestion. Lo asigna a una variable, de momento.
+            const recogerTextoPregunta=(e)=>{
+                e.preventDefault();
+                let tpTemporal=e.target.value
+                console.log(tpTemporal)
+                setpreguntaTitle(tpTemporal)
+
+        
+            }
+            const cambiarTituloPregunta=(indice)=>{
+                objetoInicial.preguntas[indice].textoPregunta=preguntaTitle
+                const datosNuevos=objetoInicial
+                setobjetoInicial({...datosNuevos})
+                console.log(objetoInicial)
+            }
+            
+            //RECOGER EL TEXTO DE LA OPCION
+            const recogerTextoOpcion=(e)=>{
+                e.preventDefault();
+                let totemporal=e.target.value
+                console.log(totemporal)
+                setTextoDeOpcion(totemporal)
+            }
+            const agregarTextoOpcion=(indicePregunta,inidceOpcion)=>{
+                objetoInicial.preguntas[indicePregunta].opcionesDePregunta[inidceOpcion]=TextoDeOpcion
+                const datosNuevos=objetoInicial
+                setobjetoInicial({...datosNuevos})
+                console.log(objetoInicial)
+            }
+
+            //RECOGE TIPO DE OPCION
+              //Se supone agarra lo de el tipo de pregunta y lo guarda en una variable
+                const recogerTipoPregunta=(e)=>{
+                e.preventDefault();
+                const OPtemporal=e.target.value
+                console.log(OPtemporal)
+                setopcionDePregunta(OPtemporal)
+            }
+
+            const agregarTipoOpcion=(indicePregunta)=>{
+                objetoInicial.preguntas[indicePregunta].tipoPregunta=opcionDePregunta
+                const datosNuevos=objetoInicial
+                setobjetoInicial({...datosNuevos})
+                console.log(objetoInicial)
+            }
+
+            //RECOGE SI ES OBLIGATORIA
+            const CambiarSiEsObligatoria=(indicePregunta)=>{
+                objetoInicial.preguntas[indicePregunta].esObligatoria=true
+                const datosNuevos=objetoInicial
+                setobjetoInicial({...datosNuevos})
+                console.log(objetoInicial)
+
+            }
+
+
+    //AGREGA OPCION
+    const addQoption=(indice)=>{
+
+        console.log(        objetoInicial.preguntas[indice].opcionesDePregunta
+        )
+        //const varConNuevaopcion=objetoInicial.preguntas[indice].opcionesDePregunta.push('opcionN')
+
+        let variableDatosAnteriores=objetoInicial
+        // console.log(variableDatosAnteriores,'hola soy VDA')
+        let opcionesAmeter='opcionN'
+
+        //console.log(opcionesAmeter, 'Soy opcionesAmeter')
+
+        variableDatosAnteriores.preguntas[indice].opcionesDePregunta.push(opcionesAmeter)
+        // console.log(variableDatosAnteriores,'hola soy VDA pero el nuevo')
+        const datosNuevos=variableDatosAnteriores
+        setobjetoInicial({...datosNuevos})   
     }
-    const addQoption=()=>{
-        let variableDatosAnteriores=objetoInicial //asignamos lo que tenemos a una variable
-        variableDatosAnteriores.preguntas.push('OpcionN')
-        console.log(variableDatosAnteriores, 'hola, soy variableDatosAnteriores')
-        const datosNuevos= variableDatosAnteriores
-        setobjetoInicial({...datosNuevos})
 
-
-
-
-    }
    
     return(
         <>
@@ -118,7 +174,7 @@ const [objetoInicial, setobjetoInicial] = useState(
 
                 <Form.Group >
                     <Form.Label className="mx-5 my-3">¿De qué tartará este formulario?</Form.Label>
-                    <Form.Control className="mx-auto" style={{width:'90%'}} nChange={recogerDescripcion} placeholder="Ingresa la descripcion de este formulario"></Form.Control>
+                    <Form.Control type="textarea" rows={3} className="mx-auto" style={{width:'90%'}} onChange={recogerDescripcion} placeholder="Ingresa la descripcion de este formulario"></Form.Control>
                 </Form.Group>
 
                 </Card.Body>
@@ -131,16 +187,27 @@ const [objetoInicial, setobjetoInicial] = useState(
                     
                     <Card className="my-3 mx-auto p-3 d-flex gap-1" style={{width:'80%', backgroundColor:'#3498DB'}}>
 
-                        <Card.Title>{indexP+1}.- {preguntaTitle}</Card.Title>
+                        <Card.Title>{indexP+1}.- {objetoInicial.preguntas[indexP].textoPregunta}</Card.Title>
                          
 
                         <Form.Group style={{width:'100%'}} className="mx-auto my-1">
-                        <Form.Control type='textarea'placeholder="Escribe la pregunta que quieres hacer" onChange={recogerTextoPregunta()}></Form.Control>
+                        <Form.Control type='textarea'placeholder="Escribe la pregunta que quieres hacer" onChange={recogerTextoPregunta} onBlur={()=>cambiarTituloPregunta(indexP)}></Form.Control>
                         </Form.Group>
 
                            <div className="d-flex justify-content-between m-3 p-0">
-                        <Form.Group style={{width:'65%'}} className="m-2">
-                            <Form.Select  onChange={recogerTipoPregunta}>
+                     
+                           </div>
+                           {
+                                preguntasI.opcionesDePregunta.map((questionOption, indexOpcion)=>(
+                                    <Form.Control placeholder="Opcion..." onChange={recogerTextoOpcion} onBlur={()=>agregarTextoOpcion(indexP,indexOpcion)}></Form.Control>
+                                ))
+                            }
+
+                            <div className='d-flex justify-content-between mx-auto my-auto' style={{color:'white'}}>
+                            <Button  onClick={()=>addQoption(indexP)} className="m-2"  style={{width:'25%', height:'20%', backgroundColor:'#27AE60'}}>Agregar opcion</Button>
+                          
+                           <Form.Group style={{width:'35%'}} className="m-2">
+                            <Form.Select  onChange={recogerTipoPregunta} onBlur={()=>agregarTipoOpcion(indexP)}>
                                 <option value='N/A'>Tipo de pregunta</option>
                                 <option value='opcion multiple'>Opcion multiple</option>
                                 <option value='checkbox'>Casillas de varias selecciones</option>
@@ -148,9 +215,10 @@ const [objetoInicial, setobjetoInicial] = useState(
                                 <option value='respuesta abierta'>Respuesta abierta</option>
                             </Form.Select>
                         </Form.Group>
-                            
-                            <Button onClick={()=>addQoption()} className="m-2"  style={{width:'25%', height:'20%', backgroundColor:'#27AE60'}}>Agregar opcion</Button>
-                           </div>
+
+                        <Form.Check className="my-3" type="checkbox" label='¿Será pregunta obligatoria?' onChange={CambiarSiEsObligatoria} ></Form.Check>
+
+                            </div>
                               
                     </Card>
                 ))

@@ -9,6 +9,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { CreacionDeFormulario } from './CreacionDeFormulario';
 import { Login } from './Login';
+import { Home } from './Home';
+import FormularioValidado from './FormularioValidado';
+import { RegistrarUsuario } from './RegistrarUsuario';
+import { ModuloRC } from './ModuloRC';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +27,23 @@ const router = createBrowserRouter([
     path: "/L",
     element: <Login/>,
   }, 
+  {
+    path: "/H",
+    element: <Home/>,
+  }, 
+  {
+    path: "/F",//Este es de prueba
+    element: <FormularioValidado/>,
+  }, 
+  {
+    path: "/RU",
+    element: <RegistrarUsuario/>,
+  }, 
+  {
+    path: "/MRC",
+    element: <ModuloRC/>,
+  }, 
+
 
 ]);//Se cambio e. componente que se quiere llamar
 
