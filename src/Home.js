@@ -53,10 +53,6 @@ export const Home=()=>{
                     
                     <Image className="m-0 p-0" style={{height:'300'}} src={agregarQ} rounded></Image>
                     </Container>
-                    
-
-                    
-
 
                 </Container>
                 </Col>
