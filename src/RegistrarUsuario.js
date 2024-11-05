@@ -102,6 +102,9 @@ const handleSubmit=(e)=>{ //Funcion que me ayuda a validar. Se manda a llamar cu
                              onChange={(e)=>setValue('nombre', e.target.value)}
                              isInvalid={!!ERRORES.nombre}
                              ></Form.Control>
+                        <Form.Control.Feedback type="invalid">
+                            {ERRORES.nombre}
+                        </Form.Control.Feedback>
                              
                         </Form.Group>
                         <hr></hr>
@@ -114,8 +117,10 @@ const handleSubmit=(e)=>{ //Funcion que me ayuda a validar. Se manda a llamar cu
                                     placeholder="Ingresa tu apellido paterno"
                                     onChange={(e)=>setValue('AP', e.target.value)}
                                     isInvalid={!!ERRORES.AP}
-
                                     ></Form.Control>
+                                      <Form.Control.Feedback type="invalid">
+                                         {ERRORES.AP}
+                                     </Form.Control.Feedback>
                                 </Form.Group>
                         
 
@@ -127,6 +132,9 @@ const handleSubmit=(e)=>{ //Funcion que me ayuda a validar. Se manda a llamar cu
                                      onChange={(e)=>setValue('AM', e.target.value)}
                                      isInvalid={!!ERRORES.AM}
                                      ></Form.Control>
+                                     <Form.Control.Feedback type="invalid">
+                                         {ERRORES.AM}
+                                     </Form.Control.Feedback>
                                 </Form.Group>
                                 <hr></hr>
                         </div>
@@ -139,6 +147,9 @@ const handleSubmit=(e)=>{ //Funcion que me ayuda a validar. Se manda a llamar cu
                                      onChange={(e)=>setValue('correo', e.target.value)}
                                      isInvalid={!!ERRORES.correo}
                                      ></Form.Control>
+                                     <Form.Control.Feedback type="invalid">
+                                         {ERRORES.correo}
+                                     </Form.Control.Feedback>
                                 </Form.Group>
                                 <hr></hr>
 
@@ -148,8 +159,11 @@ const handleSubmit=(e)=>{ //Funcion que me ayuda a validar. Se manda a llamar cu
                                     type="password" 
                                     placeholder="Ingresa tu contraseña"
                                     onChange={(e)=>setValue('cotrasenia', e.target.value)}
-                                     isInvalid={!!ERRORES.cotrasenia}
+                                     isInvalid={!!ERRORES.contrasena}                                     
                                     ></Form.Control>
+                                    <Form.Control.Feedback type="invalid">
+                                         {ERRORES.contrasena}
+                                     </Form.Control.Feedback>
                                 </Form.Group>
                                 <hr></hr>
 
@@ -161,12 +175,15 @@ const handleSubmit=(e)=>{ //Funcion que me ayuda a validar. Se manda a llamar cu
                                      onChange={(e)=>setValue('contrasenia2', e.target.value)}
                                      isInvalid={!!ERRORES.contrasenia2}
                                      ></Form.Control>
+                                     <Form.Control.Feedback type="invalid">
+                                         {ERRORES.contrasenia2}
+                                     </Form.Control.Feedback>
                                 </Form.Group>
                                 <hr></hr>
                         </div>
 
                         <div className="d-flex justify-content-center mb-4">
-                            <Button   style={{backgroundColor:'#27AE60'}}>Registrarme ya!</Button>
+                            <Button   style={{backgroundColor:'#27AE60'}} onClick={()=>handleSubmit()}>Registrarme ya!</Button>
 
                         </div>
 
